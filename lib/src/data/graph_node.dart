@@ -1,13 +1,19 @@
 class GraphNode<T> {
-  GraphNode({
-    required this.key,
-    required this.value,
-  });
+  GraphNode(
+    this.value, {
+    List<GraphNode<T>>? connections,
+  }) : connections = connections ?? [];
 
-  final int key;
   final T value;
+  final List<GraphNode<T>> connections;
 
-  final List<GraphNode<T>> _connections = [];
-  void addLink(GraphNode<T> node) => this._connections.add(node);
-  void removeLink(GraphNode<T> node) => this._connections.remove(node);
+  void addConnection(
+    GraphNode<T> node,
+  ) =>
+      this.connections.add(node);
+
+  void removeConnection(
+    GraphNode<T> node,
+  ) =>
+      this.connections.remove(node);
 }

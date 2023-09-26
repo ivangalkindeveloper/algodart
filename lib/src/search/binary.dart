@@ -3,15 +3,23 @@ import 'package:algodart/src/utility/typedef.dart';
 /// Binary search
 ///
 /// Description:
-///   The division of the search area when the pointer is set to the middle.
-///
-/// Order:
-///   O(logN)
+/// EN
+///   Dividing the search area when the pointer is placed in the middle and discarding
+///   the remaining half if the directed search condition is not satisfied.
+/// RU
+///   Разделение области поиска при установке указателя в середину и отбрасывание остальной половины
+///   в случае неудовлетворения условия направленного поиска.
 ///
 /// Where to use:
+/// EN
 ///   Big sorted data.
+/// RU
+///   Большие сортированные данные.
+///
+/// Сomplexity:
+///   O(logN)
 
-T? binary<T>(
+T? binarySearch<T>(
   List<T> list,
   T search,
   EqualityTest test,

@@ -3,15 +3,21 @@ import 'package:algodart/src/utility/typedef.dart';
 /// Linear search
 ///
 /// Description:
-///   Simple iteration of elements in search of the desired.
-///
-/// Order:
-///   O(N)
+/// EN
+///   Linear search of elements to find what you need.
+/// RU
+///   Линейный перебор элементов для поиска необходимого.
 ///
 /// Where to use:
-///   Unsorted data.
+/// EN
+///   Unsorted data or nonlinear data structure.
+/// RU
+///   Несортированные данные или нелинейные структуры данных.
+///
+/// Сomplexity:
+///   O(N)
 
-T? linear<T>(
+T? linearSearch<T>(
   List<T> list,
   T search,
   EqualityTest test,

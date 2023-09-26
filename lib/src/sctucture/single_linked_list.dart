@@ -1,8 +1,7 @@
-import 'package:algodart/src/data/single_linked_list_node.dart';
+import 'package:algodart/src/sctucture/nodable.dart';
+import 'package:algodart/src/data/node.dart';
 
-abstract class _ISingleLinkedList<T> {
-  SingleLinkedListNode<T>? head;
-
+abstract class ISingleLinkedList<T> {
   void add(T data);
 
   bool has(T target);
@@ -12,42 +11,39 @@ abstract class _ISingleLinkedList<T> {
   void reverse();
 }
 
-class SingleLinkedList<T> implements _ISingleLinkedList<T> {
+class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
   SingleLinkedList({
     T? data,
   }) {
     if (data != null) {
-      head = SingleLinkedListNode(
+      head = Node(
         value: data,
       );
     }
   }
 
   @override
-  SingleLinkedListNode<T>? head;
-
-  @override
   void add(T data) {
-    if (this.head == null) {
-      this.head = SingleLinkedListNode(
+    if (head == null) {
+      head = Node(
         value: data,
       );
       return;
     }
 
-    SingleLinkedListNode<T>? current = this.head;
+    Node<T>? current = head;
 
     while (current?.next != null) {
       current = current?.next;
     }
-    current?.next = SingleLinkedListNode(
+    current?.next = Node(
       value: data,
     );
   }
 
   @override
   bool has(T target) {
-    SingleLinkedListNode<T>? current = this.head;
+    Node<T>? current = head;
 
     while (current != null) {
       if (current.value == target) {
@@ -61,13 +57,13 @@ class SingleLinkedList<T> implements _ISingleLinkedList<T> {
 
   @override
   void remove(T target) {
-    if (this.head?.next == target) {
-      this.head = this.head?.next;
+    if (head?.next == target) {
+      head = head?.next;
       return;
     }
 
-    SingleLinkedListNode<T>? current = this.head;
-    SingleLinkedListNode<T>? previos;
+    Node<T>? current = head;
+    Node<T>? previos;
 
     while (current != null) {
       if (current.value == target) {
@@ -80,21 +76,21 @@ class SingleLinkedList<T> implements _ISingleLinkedList<T> {
 
   @override
   void reverse() {
-    SingleLinkedListNode<T>? current = this.head;
-    SingleLinkedListNode<T>? previos;
+    Node<T>? current = head;
+    Node<T>? previos;
 
     while (current != null) {
-      final SingleLinkedListNode<T>? next = current.next;
+      final Node<T>? next = current.next;
       current.next = previos;
       previos = current;
       current = next;
     }
-    this.head = previos;
+    head = previos;
   }
 
   T operator [](int index) {
     int count = 0;
-    SingleLinkedListNode<T>? current = this.head;
+    Node<T>? current = head;
 
     while (current != null) {
       if (index == count) {
@@ -104,17 +100,5 @@ class SingleLinkedList<T> implements _ISingleLinkedList<T> {
       }
     }
     throw RangeError.index(index, count);
-  }
-
-  @override
-  String toString() {
-    final StringBuffer buffer = StringBuffer();
-    SingleLinkedListNode<T>? current = this.head;
-
-    while (current != null) {
-      buffer.write(current.value.toString());
-      current = current.next;
-    }
-    return buffer.toString();
   }
 }
