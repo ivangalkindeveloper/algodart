@@ -14,7 +14,7 @@ T? breadthFirstSearch<T>(
 
   while (nodes.isNotEmpty) {
     final GraphNode<T> currentNode = nodes.dequeue();
-    if (test(currentNode)) {
+    if (test(currentNode.value)) {
       return currentNode.value;
     }
 

@@ -14,7 +14,7 @@ T? depthFirstSearch<T>(
 
   while (nodes.isNotEmpty) {
     final GraphNode<T> currentNode = nodes.pop();
-    if (test(currentNode)) {
+    if (test(currentNode.value)) {
       return currentNode.value;
     }
 
