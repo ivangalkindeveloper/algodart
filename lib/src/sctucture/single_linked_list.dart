@@ -1,4 +1,4 @@
-import 'package:algodart/src/sctucture/nodable.dart';
+import 'package:algodart/src/utility/nodable.dart';
 import 'package:algodart/src/data/node.dart';
 
 abstract class ISingleLinkedList<T> {
@@ -31,7 +31,7 @@ class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
       return;
     }
 
-    Node<T>? current = head;
+    INode<T>? current = head;
 
     while (current?.next != null) {
       current = current?.next;
@@ -43,7 +43,7 @@ class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
 
   @override
   bool has(T target) {
-    Node<T>? current = head;
+    INode<T>? current = head;
 
     while (current != null) {
       if (current.value == target) {
@@ -62,8 +62,8 @@ class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
       return;
     }
 
-    Node<T>? current = head;
-    Node<T>? previos;
+    INode<T>? current = head;
+    INode<T>? previos;
 
     while (current != null) {
       if (current.value == target) {
@@ -76,11 +76,11 @@ class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
 
   @override
   void reverse() {
-    Node<T>? current = head;
-    Node<T>? previos;
+    INode<T>? current = head;
+    INode<T>? previos;
 
     while (current != null) {
-      final Node<T>? next = current.next;
+      final INode<T>? next = current.next;
       current.next = previos;
       previos = current;
       current = next;
@@ -90,7 +90,7 @@ class SingleLinkedList<T> extends Nodeble<T> implements ISingleLinkedList<T> {
 
   T operator [](int index) {
     int count = 0;
-    Node<T>? current = head;
+    INode<T>? current = head;
 
     while (current != null) {
       if (index == count) {

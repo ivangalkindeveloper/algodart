@@ -1,7 +1,7 @@
 import 'package:algodart/src/data/node.dart';
 
 class Nodeble<T> {
-  Node<T>? head;
+  INode<T>? head;
 
   int get length {
     if (this.head == null) {
@@ -9,7 +9,7 @@ class Nodeble<T> {
     }
 
     int count = 0;
-    Node<T>? current = this.head;
+    INode<T>? current = this.head;
     while (current != null) {
       count++;
     }
@@ -23,7 +23,7 @@ class Nodeble<T> {
   @override
   String toString() {
     final StringBuffer buffer = StringBuffer();
-    Node<T>? current = this.head;
+    INode<T>? current = this.head;
 
     while (current != null) {
       buffer.write(current.value.toString());

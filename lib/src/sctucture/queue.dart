@@ -1,4 +1,4 @@
-import 'package:algodart/src/sctucture/nodable.dart';
+import 'package:algodart/src/utility/nodable.dart';
 import 'package:algodart/src/data/node.dart';
 
 abstract class IQueue<T> {
@@ -22,12 +22,12 @@ class Queue<T> extends Nodeble<T> implements IQueue<T> {
     }
   }
 
-  Node<T>? front;
+  INode<T>? front;
   int count = 0;
 
   @override
   void enqueue(T data) {
-    final Node<T> node = Node(
+    final INode<T> node = Node(
       value: data,
     );
     count++;
@@ -48,7 +48,7 @@ class Queue<T> extends Nodeble<T> implements IQueue<T> {
     }
 
     count--;
-    final Node temp = front!;
+    final INode temp = front!;
     front = front?.next;
     if (front == null) {
       head = null;
