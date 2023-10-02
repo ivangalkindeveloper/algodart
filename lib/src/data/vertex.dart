@@ -1,58 +1,58 @@
 abstract class IVertex<T> {
   abstract final T key;
-  abstract final Map<T, num> edges;
+  abstract final Map<IVertex<T>, num> edges;
 
   void addEdge(
-    T key, {
+    IVertex<T> vertex, {
     num weight = 0,
   });
 
   void addAllEdges(
-    Map<T, num> edges,
+    Map<IVertex<T>, num> edges,
   );
 
   void removeEdge(
-    T key,
+    IVertex<T> vertex,
   );
 
   num? weightEgde(
-    T key,
+    IVertex<T> vertex,
   );
 }
 
 class Vertex<T> implements IVertex<T> {
   Vertex(
     this.key, {
-    Map<T, num>? edges,
+    Map<IVertex<T>, num>? edges,
   }) : edges = edges ?? {};
 
   @override
   final T key;
   @override
-  final Map<T, num> edges;
+  final Map<IVertex<T>, num> edges;
 
   @override
   void addEdge(
-    T key, {
+    IVertex<T> vertex, {
     num weight = 0,
   }) =>
-      this.edges[key] = weight;
+      this.edges[vertex] = weight;
 
   @override
   void addAllEdges(
-    Map<T, num> edges,
+    Map<IVertex<T>, num> edges,
   ) =>
       this.edges.addAll(edges);
 
   @override
   void removeEdge(
-    T key,
+    IVertex<T> vertex,
   ) =>
-      this.edges.remove(key);
+      this.edges.remove(vertex);
 
   @override
   num? weightEgde(
-    T key,
+    IVertex<T> vertex,
   ) =>
-      this.edges[key];
+      this.edges[vertex];
 }
