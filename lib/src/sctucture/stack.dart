@@ -2,7 +2,9 @@ import 'package:algodart/src/utility/nodable.dart';
 import 'package:algodart/src/data/node.dart';
 
 abstract class IStack<T> {
-  void push(T data);
+  void push(
+    T data,
+  );
 
   T pop();
 }
@@ -12,14 +14,16 @@ class Stack<T> extends Nodeble<T> implements IStack<T> {
     T? data,
   }) {
     if (data != null) {
-      head = Node(
-        value: data,
+      push(
+        data,
       );
     }
   }
 
   @override
-  void push(T data) {
+  void push(
+    T data,
+  ) {
     final INode<T> node = Node<T>(
       value: data,
     );
@@ -37,8 +41,8 @@ class Stack<T> extends Nodeble<T> implements IStack<T> {
       throw RangeError("Pop from empty stack");
     }
 
-    final INode<T> poppedNode = head!;
-    head = poppedNode.next;
-    return poppedNode.value;
+    final INode<T> popped = head!;
+    head = popped.next;
+    return popped.value;
   }
 }

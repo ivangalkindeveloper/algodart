@@ -1,9 +1,13 @@
-bool isPalindrome(String s) {
+bool isPalindrome(
+  String s,
+) {
   s = s.replaceAll(" ", "").toLowerCase();
   return s.split("").toString() == s.split("").reversed.toString();
 }
 
-bool isPalindromeRecursive(String s) {
+bool isPalindromeRecursive(
+  String s,
+) {
   if (s.isEmpty || s.length == 1) {
     return true;
   }
@@ -15,8 +19,10 @@ bool isPalindromeRecursive(String s) {
     return false;
   }
 
-  return isPalindromeRecursive(s.substring(
-    1,
-    s.length - 2,
-  ));
+  return isPalindromeRecursive(
+    s.substring(
+      1,
+      s.length - 2,
+    ),
+  );
 }

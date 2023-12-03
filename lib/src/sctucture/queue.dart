@@ -2,7 +2,9 @@ import 'package:algodart/src/utility/nodable.dart';
 import 'package:algodart/src/data/node.dart';
 
 abstract class IQueue<T> {
-  void enqueue(T data);
+  void enqueue(
+    T data,
+  );
 
   T dequeue();
 }
@@ -12,32 +14,33 @@ class Queue<T> extends Nodeble<T> implements IQueue<T> {
     T? data,
   }) {
     if (data != null) {
-      front = Node(
-        value: data,
+      enqueue(
+        data,
       );
-      head = Node(
-        value: data,
-      );
-      count = 1;
     }
   }
 
-  INode<T>? front;
-  int count = 0;
+  int _count = 0;
 
   @override
-  void enqueue(T data) {
+  void enqueue(
+    T data,
+  ) {
     final INode<T> node = Node(
       value: data,
     );
-    count++;
+    _count++;
 
     if (head == null) {
-      front = node;
       head = node;
     } else {
-      head!.next = head;
-      head = node; // TODO ??
+      INode<T>? current = head;
+      while (current?.next != null) {
+        current = current?.next;
+      }
+      current?.next = Node(
+        value: data,
+      );
     }
   }
 
@@ -47,15 +50,12 @@ class Queue<T> extends Nodeble<T> implements IQueue<T> {
       throw RangeError("Dequeue from empty queue");
     }
 
-    count--;
-    final INode temp = front!;
-    front = front?.next;
-    if (front == null) {
-      head = null;
-    }
+    _count--;
+    final INode temp = head!;
+    head = head?.next;
     return temp.value;
   }
 
   @override
-  get length => this.count;
+  int get length => this._count;
 }
